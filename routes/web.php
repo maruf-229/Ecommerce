@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     return view('frontend.home');
 });
 
@@ -24,7 +24,18 @@ Route::get('/categories', [\App\Http\Controllers\PagesController::class ,'catego
 
 Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => ['auth']], function (){
     Route::get('/dashboard', [DashboardController::class, 'getDashboardPage'])->name('dashboard');
-    Route::resource('category', CategoryController::class);
+
+
+    Route::group(['prefix' => 'category'], function () {
+
+        Route::get('/', [CategoryController::class,'index'])->name('backend.category');
+        Route::get('/create', [CategoryController::class, 'create'])->name('backend.category.create');
+        Route::get('/edit/{id}', [CategoryController::class,])->name('backend.category.edit');
+        Route::post('/store', [CategoryController::class, 'store'])->name('backend.category.store');
+        Route::post('/edit/{id}', [CategoryController::class,])->name('backend.category.update');
+        //Route::post('/delete/{id}', [CategoryController::class,])->name('admin.categories.delete');
+    });
+
 
 });
 

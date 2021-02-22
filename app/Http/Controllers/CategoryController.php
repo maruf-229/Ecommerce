@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view();
+        $categories=Category::orderBy('id','desc')->get();
+        return view('backend.category.index')->with('categories',$categories);
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.category.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+        ]);
+
+        $category = new Category;
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->save();
+        //Product image model insert image
+//        return redirect()->route('backend.category.create');
     }
 
     /**
