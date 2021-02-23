@@ -5,13 +5,13 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="card">
-                <div class="card-header">
-                    Add Category
+                <div class="card-header" >
+                   <b>Add Category</b>
                 </div>
                 <div class="card-body">
                     <form action="{{route('admin.backend.category.store')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                       @include("backend.layouts.messege")
+                       @include("backend.partials.messege")
                         <div class="mb-3">
                             <label for="title" class="form-label">Name</label>
                             <input type="text" class="form-control" name="name" id="name">
@@ -22,11 +22,6 @@
                             <!--<input type="password" class="form-control" id="exampleInputPassword1">-->
                             <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
                         </div>
-
-
-
-
-
                         <button type="submit" class="btn btn-primary">Add category</button>
                     </form>
                 </div>

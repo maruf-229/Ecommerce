@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +34,10 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => ['auth']], fu
         Route::get('/edit/{id}', [CategoryController::class,'edit'])->name('backend.category.edit');
         Route::post('/store', [CategoryController::class, 'store'])->name('backend.category.store');
         Route::post('/edit/{id}', [CategoryController::class,'update'])->name('backend.category.update');
-        //Route::post('/delete/{id}', [CategoryController::class,])->name('admin.categories.delete');
+        Route::post('/delete/{id}', [CategoryController::class,'delete'])->name('backend.categories.delete');
     });
+
+    Route::resource('product', ProductController::class);
 
 
 });

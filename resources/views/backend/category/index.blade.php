@@ -15,16 +15,50 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Product Ammount</th>
+                            <th>Manage</th>
                         </tr>
+                        @foreach($categories as $category)
                         <tr>
 
-                            @foreach($categories as $category)
+
                                 <td>#</td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->description }}</td>
-                            @endforeach
+                                <td>{{ $category->products->count() }}</td>
 
+                            <td>
+                                <a href="{{route('admin.backend.category.edit' , $category->id)}}" class="btn btn-success">Edit</a>
+                                <a href="#deleteModal{{$category->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteModal{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Are you sure You want to delete?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            <div class="modal-footer">
+
+                                                <form action="{!! route('admin.backend.categories.delete',$category->id) !!}" method="post">
+                                                    {{csrf_field()}}
+                                                    <button type="submit" class="btn btn-danger">Parmanently Delete</button>
+
+                                                </form>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
+                        @endforeach
 
                     </table>
                 </div>

@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $category->description = $request->description;
         $category->save();
         //Product image model insert image
-//        return redirect()->route('backend.category.create');
+         return redirect()->route('admin.backend.category.create');
     }
 
     /**
@@ -66,9 +66,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category,$id)
     {
-        //
+        $category = Category::find($id);
+        return view('backend.category.edit')->with('category', $category);
     }
 
     /**
@@ -78,9 +79,21 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category , $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+        ]);
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->description = $request->description;
+
+
+
+        $category->save();
+
+        return redirect()->route('admin.backend.category');
     }
 
     /**
@@ -89,9 +102,17 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function delete($id)
     {
-        //
+
+        $category = Category::find($id);
+
+        if(!is_null($category)){
+            $category->delete();
+        }
+
+        session()->flash('success','Product has deleted successfully !!');
+        return back();
     }
 
 }
