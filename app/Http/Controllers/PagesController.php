@@ -16,4 +16,5 @@ class PagesController extends Controller
         $categories=Category::orderBy('id','desc')->get();
         return view('frontend.category')->with('categories',$categories);
     }
+
 }

@@ -64,7 +64,7 @@ class CategoryController extends Controller
         $category->save();
 
 
-        return redirect()->route('admin.backend.category.create');
+        return redirect()->route('admin.backend.category');
     }
 
     /**
