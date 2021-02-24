@@ -39,14 +39,30 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
         ]);
 
         $category = new Category;
         $category->name = $request->name;
         $category->description = $request->description;
-        $category->save();
+
         //Product image model insert image
-         return redirect()->route('admin.backend.category.create');
+
+        if ($request->hasFile('image')) {
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalExtension();
+            $filename=time(). '.' .$request->image-> $extension;
+            $request->image->move(public_path('images-1.category') .$filename);
+            $category->image=$filename;
+        }
+        else{
+            return $request;
+            $category->image='';
+        }
+        $category->save();
+
+
+        return redirect()->route('admin.backend.category.create');
     }
 
     /**

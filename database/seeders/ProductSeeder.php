@@ -16,11 +16,11 @@ class ProductSeeder extends Seeder
     public function run()
     {
         DB::table('products')->insert([
-            'title' => Str::random(10),
-            'description' =>  Str::random(1000),
-            'quantity' => rand(1,1000),
-            'price' => rand(1,10000),
-            'category_id' => rand(1,3),
+            'title' => 'Easy',
+            'description' => 'Cotton Shirt',
+            'quantity' => '6',
+            'price' => '1500',
+            'category_id' =>'1',
         ]);
     }
 }

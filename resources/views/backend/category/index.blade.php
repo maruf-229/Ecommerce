@@ -16,6 +16,7 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Product Ammount</th>
+                            <th>Image</th>
                             <th>Manage</th>
                         </tr>
                         @foreach($categories as $category)
@@ -26,6 +27,8 @@
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->description }}</td>
                                 <td>{{ $category->products->count() }}</td>
+
+                                <td><img src="{{ asset('images.category.'.$category->image) }}" alt="Image"> </td>
 
                             <td>
                                 <a href="{{route('admin.backend.category.edit' , $category->id)}}" class="btn btn-success">Edit</a>

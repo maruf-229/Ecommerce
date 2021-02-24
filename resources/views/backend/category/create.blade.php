@@ -22,6 +22,15 @@
                             <!--<input type="password" class="form-control" id="exampleInputPassword1">-->
                             <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="product_image" class="form-label">Product Image</label>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <input type="file" class="form-control" name="image" id="image">
+                                </div>
+
+                            </div>
                         <button type="submit" class="btn btn-primary">Add category</button>
                     </form>
                 </div>
