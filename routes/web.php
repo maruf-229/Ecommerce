@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,19 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
-
-
-Route::get('/categories', [\App\Http\Controllers\PagesController::class ,'category']);
+Route::get('/' , [PagesController::class,'index'])->name('frontend.home');
+Route::get('/categories', [PagesController::class ,'category'])->name('frontend.category');
 
 Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => ['auth']], function (){
     Route::get('/dashboard', [DashboardController::class, 'getDashboardPage'])->name('dashboard');
-
-
     Route::group(['prefix' => 'category'], function () {
-
         Route::get('/', [CategoryController::class,'index'])->name('backend.category');
         Route::get('/create', [CategoryController::class, 'create'])->name('backend.category.create');
         Route::get('/edit/{id}', [CategoryController::class,'edit'])->name('backend.category.edit');
@@ -36,10 +30,7 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => ['auth']], fu
         Route::post('/edit/{id}', [CategoryController::class,'update'])->name('backend.category.update');
         Route::post('/delete/{id}', [CategoryController::class,'delete'])->name('backend.categories.delete');
     });
-
     Route::resource('product', ProductController::class);
-
-
 });
 
 

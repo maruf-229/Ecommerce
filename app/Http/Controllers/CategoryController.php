@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -48,16 +49,17 @@ class CategoryController extends Controller
 
         //Product image model insert image
 
-        if ($request->hasFile('image')) {
-            $file=$request->file('image');
-            $extension=$file->getClientOriginalExtension();
-            $filename=time(). '.' . $extension;
-            $request->image->move(public_path('images-1.category') .$filename);
-            $category->image=$filename;
-        }
-        else{
-            return $request;
-            $category->image='';
+        if($request->hasFile('image')){
+            $image              = $request->file('image');
+            $OriginalExtension  = $image->getClientOriginalExtension();
+            $image_name         = Carbon::now()->format('d-m-Y H-i-s') .'.'. $OriginalExtension;
+            $destinationPath    = 'images';
+            $resize_image       = \Intervention\Image\Facades\Image::make($image->getRealPath());
+            $resize_image->resize(500, 500, function($constraint){
+                $constraint->aspectRatio();
+            });
+            $resize_image->save($destinationPath . '/' . $image_name);
+            $category->image    = $destinationPath . '/' . $image_name;
         }
         $category->save();
 
