@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name='Mr User';
         $user->email='user@gmail.com';
-        $user->password=Hash::make('123456789');
+        $user->password=Hash::make('qwertyuiop');
         $user->save();
 
     }

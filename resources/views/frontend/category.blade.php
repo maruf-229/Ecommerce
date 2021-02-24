@@ -11,7 +11,7 @@
                 @foreach($categories as $category)
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="shop-cat-box">
-                            <img class="img-fluid" src="{{asset('images-1.category.'.$category->image)}}" alt="" >
+                            <img class="img-fluid" src="{{asset('images'.$category->image)}}" alt="" >
                             <a class="btn hvr-hover" href="#">{{$category->name}}</a>
                             <p class="card-text">{{$category->description}}</p>
                         </div>
