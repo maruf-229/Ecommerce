@@ -41,6 +41,16 @@
 
                         </div>
 
+                        <div class="mb-3">
+                            <label for="product_image" class="form-label">Product Image</label>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <input type="file" class="form-control" name="product_image[]" id="product_image">
+                                </div>
+
+                            </div>
+                        </div>
 
 
                         <button type="submit" class="btn btn-primary">Add Product</button>

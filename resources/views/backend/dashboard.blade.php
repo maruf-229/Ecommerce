@@ -21,24 +21,29 @@
 
     <!-- Main content -->
     <section class="content">
-        @foreach($categories as $category)
+
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>{{ $category->products->count() }}</h3>
 
+                    <div class="small-box bg-info">
+
+                        <div class="inner">
+                            @foreach($categories as $category)
+                            <h3>{{ $category->products->count() }}</h3>
+                            @endforeach
                             <p>Number of Products</p>
                         </div>
+
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
+
                 </div>
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
@@ -95,7 +100,7 @@
 
             <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
-        @endforeach
+
     </section>
     <!-- /.content -->
 </div>

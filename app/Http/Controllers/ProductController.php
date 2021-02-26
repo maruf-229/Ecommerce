@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Image;
 
 class ProductController extends Controller
 {
@@ -54,6 +57,23 @@ class ProductController extends Controller
         $product->quantity = $request->quantity;
         $product->category_id = $request->category;
         $product->save();
+
+        if (count($request->product_image) > 0) {
+
+            foreach ($request->product_image as $image) {
+
+                // $image=$request->file('product_image');
+                $img = time() . '.' . $image->getClientOriginalExtension();
+                $location = public_path('images/' . $img);
+                Image::make($image)->save($location);
+
+                $product_image = new ProductImage;
+                $product_image->product_id = $product->id;
+                $product_image->image = $img;
+                $product_image->save();
+            }
+        }
+
         return redirect()->route('admin.product.create');
     }
 

@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/' , [PagesController::class,'index'])->name('frontend.home');
 Route::get('/categories', [PagesController::class ,'category'])->name('frontend.category');
+Route::get('/products', [PagesController::class,'product'])->name('frontend.category.product');
+
+
 
 Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => ['auth']], function (){
     Route::get('/dashboard', [DashboardController::class, 'getDashboardPage'])->name('dashboard');

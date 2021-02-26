@@ -30,7 +30,10 @@
                                 <a href="{{route('admin.product.edit' , $product)}}" class="btn btn-success">Edit</a>
                                 <a href="#deleteModal{{$product->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
                                 <!-- Modal -->
-                                <div class="modal fade" id="deleteModal{{$product->product}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <form action="" method="post" enctype="">
+                                    @csrf
+                                    @method('POST')
+                                    <div class="modal fade" id="deleteModal{{$product->product}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -55,6 +58,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                </form>
                             </td>
                     </tr>
                     @endforeach
