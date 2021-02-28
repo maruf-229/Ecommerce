@@ -8,9 +8,10 @@
                 Edit Product
             </div>
             <div class="card-body">
-                <form action="{{route('admin.product.update',$product->id)}}" method="post" enctype="multipart/form-data">
+
+                <form action="{{ route('admin.product.update', $product->id ) }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    @include("backend.partials.messege")
+@method('PUT')
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" name="title" id="title" value="{{$product->title}}">

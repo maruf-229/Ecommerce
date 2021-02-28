@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BannerImages;
+use App\Models\ProductImages;
 use Illuminate\Http\Request;
 
-class BannerImagesController extends Controller
+class ProductImagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class BannerImagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BannerImages  $bannerImages
+     * @param  \App\Models\ProductImages  $productImages
      * @return \Illuminate\Http\Response
      */
-    public function show(BannerImages $bannerImages)
+    public function show(ProductImages $productImages)
     {
         //
     }
@@ -52,10 +52,10 @@ class BannerImagesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BannerImages  $bannerImages
+     * @param  \App\Models\ProductImages  $productImages
      * @return \Illuminate\Http\Response
      */
-    public function edit(BannerImages $bannerImages)
+    public function edit(ProductImages $productImages)
     {
         //
     }
@@ -64,10 +64,10 @@ class BannerImagesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BannerImages  $bannerImages
+     * @param  \App\Models\ProductImages  $productImages
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BannerImages $bannerImages)
+    public function update(Request $request, ProductImages $productImages)
     {
         //
     }
@@ -75,10 +75,10 @@ class BannerImagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BannerImages  $bannerImages
+     * @param  \App\Models\ProductImages  $productImages
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BannerImages $bannerImages)
+    public function destroy(ProductImages $productImages)
     {
         //
     }

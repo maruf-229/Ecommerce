@@ -9,12 +9,12 @@ class Banner extends Model
 {
     use HasFactory;
 
-    public static function orderBy(string $string, string $string1)
-    {
-    }
+    protected $fillable = [
+        'title',
+        'description',
+        'image',
+    ];
 
-    public  function images()
-    {
-        return $this->hasMany('App\Models\BannerImages');
-    }
+
+
 }

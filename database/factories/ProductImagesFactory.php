@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\BannerImages;
+use App\Models\ProductImages;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BannerImagesFactory extends Factory
+class ProductImagesFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = BannerImages::class;
+    protected $model = ProductImages::class;
 
     /**
      * Define the model's default state.

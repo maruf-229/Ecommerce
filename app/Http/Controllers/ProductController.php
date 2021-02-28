@@ -98,7 +98,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $product = Product::find($product);
+
         return view('backend.product.edit',compact('product'));
     }
 
@@ -136,14 +136,13 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product ,$id)
     {
-        $product = Product::find($product);
 
+        $product = Product::find($id);
         if(!is_null($product)){
-            $product->delete();
+            $product->delete($id);
         }
-
         session()->flash('success','Product has deleted successfully !!');
         return back();
     }

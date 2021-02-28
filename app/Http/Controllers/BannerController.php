@@ -2,23 +2,27 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Banner;
-use App\Models\BannerImages;
+use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Image;
 
 class BannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
-     */
+
+
     public function index()
     {
-        $banners= Banner::orderBy('id','desc')->get();
-        return view('backend.banner.index')->with('banners',$banners);
+        $banners = DB::table('banners')->get();
+//       $banners = Banner::orderBy('id', 'desc')->get();
+//        $banners = Banner::where('id', '!=', 0)->orderBy('id', 'desc')->get();
+
+//        $banners = Banner::orderBy('id', '!=', 0)->get();
+//        dd($banners);
+       return view('backend.banner.index',compact('banners'));
     }
 
     /**
@@ -50,23 +54,22 @@ class BannerController extends Controller
         $banner->title = $request->title;
         $banner->description = $request->description;
 
-        $banner->save();
 
-        if (count($request->banner_image) > 0) {
+        if($request->hasFile('image')){
+            $image              = $request->file('image');
+            $OriginalExtension  = $image->getClientOriginalExtension();
+            $image_name         = Carbon::now()->format('d-m-Y H-i-s') .'.'. $OriginalExtension;
+            $destinationPath    = 'images';
+            $resize_image       =Image::make($image->getRealPath());
+            $resize_image->resize(500, 500, function($constraint){
+                $constraint->aspectRatio();
+            });
+            $resize_image->save($destinationPath . '/' . $image_name);
 
-            foreach ($request->banner_image as $image) {
-
-                // $image=$request->file('product_image');
-                $img = time() . '.' . $image->getClientOriginalExtension();
-                $location = public_path('images/' . $img);
-                Image::make($image)->save($location);
-
-                $banner_image = new BannerImages;
-                $banner_image->banner_id = $banner->id;
-                $banner_image->image = $img;
-                $banner_image->save();
-            }
+            $banner->image    = $image_name;
         }
+
+        $banner->save();
 
         return redirect()->route('admin.backend.banner');
     }
@@ -88,9 +91,12 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function edit(Banner $banner ,$id)
     {
-        //
+//        echo 'ami dekhte chai ei function porjonto hit ase kina !';
+
+        $banner = Banner::find($id);
+        return view('backend.banner.edit' , compact('banner'));
     }
 
     /**
@@ -100,9 +106,21 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banner $banner)
+    public function update(Request $request, Banner $banner ,$id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+        ]);
+        $banner = Category::find($id);
+        $banner->title = $request->title;
+        $banner->description = $request->description;
+
+
+
+        $banner->save();
+
+        return redirect()->route('admin.backend.banner');
     }
 
     /**
@@ -111,8 +129,15 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function delete(Banner $banner , $id)
     {
-        //
-    }
+//
+       $banner = Banner::find($id);
+
+      if(!is_null($banner)){
+           $banner->delete();
+       }
+      session()->flash('success','Product has deleted successfully !!');
+       return back();
+  }
 }

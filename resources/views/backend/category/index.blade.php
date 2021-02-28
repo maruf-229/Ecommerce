@@ -28,7 +28,7 @@
                                 <td>{{ $category->description }}</td>
                                 <td>{{ $category->products->count() }}</td>
 
-                                <td><img src="{{ asset('images/'.$category->image) }}" alt="Image"> </td>
+                                <td><img src="{{ asset('images/'.$category->image) }}" alt="Image" width="50px"> </td>
 
                             <td>
                                 <a href="{{route('admin.backend.category.edit' , $category->id)}}" class="btn btn-success">Edit</a>

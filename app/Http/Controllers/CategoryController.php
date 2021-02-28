@@ -61,7 +61,8 @@ class CategoryController extends Controller
                 $constraint->aspectRatio();
             });
             $resize_image->save($destinationPath . '/' . $image_name);
-            $category->image    = $destinationPath . '/' . $image_name;
+
+            $category->image    = $image_name;
         }
         $category->save();
 

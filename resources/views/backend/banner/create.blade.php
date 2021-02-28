@@ -30,15 +30,8 @@
 
                             <div class="row">
                                 <div class="col-3">
-                                    <input type="file" class="form-control" name="banner_image[]" id="banner_image">
+                                    <input type="file" class="form-control" name="image" id="image">
                                 </div>
-                                <div class="col-3">
-                                    <input type="file" class="form-control" name="banner_image[]" id="banner_image">
-                                </div>
-                                <div class="col-3">
-                                    <input type="file" class="form-control" name="banner_image[]" id="banner_image">
-                                </div>
-
                             </div>
                         </div>
 

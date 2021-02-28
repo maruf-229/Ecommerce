@@ -9,7 +9,7 @@
                 Manage Product
             </div>
             <div class="card-body">
-                @include("backend.partials.messege")
+
                 <table class="table table-hover table-striped">
                     <tr>
                         <th>#</th>
@@ -27,13 +27,12 @@
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->category->name }}</td>
                             <td>
-                                <a href="{{route('admin.product.edit' , $product->id)}}" class="btn btn-success">Edit</a>
-                                <a href="#deleteModal{{$product->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
+
+
+                                <a href="{{ route('admin.product.edit', $product->id ) }}" class="btn btn-success">Edit</a>
+                                <a href="#deleteModal{{ $product->id }}" data-toggle="modal" class="btn btn-danger">Delete</a>
                                 <!-- Modal -->
-                                <form action="" method="post" enctype="">
-                                    @csrf
-                                    @method('POST')
-                                    <div class="modal fade" id="deleteModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                               <div class="modal fade" id="deleteModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -47,8 +46,10 @@
                                             </div>
                                             <div class="modal-footer">
 
-                                                <form action="{!! route('admin.product.destroy',$product->id) !!}" method="post">
-                                                    {{csrf_field()}}
+                                                <form action="{{ route('admin.product.destroy', $product->id) }}" method="post">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    @csrf
+                                                    @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Parmanently Delete</button>
 
                                                 </form>
@@ -58,7 +59,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                </form>
                             </td>
                     </tr>
                     @endforeach

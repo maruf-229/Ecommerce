@@ -9,7 +9,7 @@
                     Manage Banner
                 </div>
                 <div class="card-body">
-                    @include("backend.partials.messege")
+
                     <table class="table table-hover table-striped">
                         <tr>
                             <th>#</th>
@@ -20,6 +20,36 @@
                             <tr>
                                 <td>#</td>
                                 <td>{{ $banner->title }}</td>
+                                <td>
+                                    <a href="{{route('admin.backend.banner.edit' , $banner->id)}}" class="btn btn-success">Edit</a>
+                                    <a href="#deleteModal{{$banner->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="deleteModal{{$banner->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Are you sure You want to delete?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ...
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <form action="{!! route('admin.backend.banners.delete',$banner->id) !!}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger">Parmanently Delete</button>
+
+                                                    </form>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
 
                             </tr>
                         @endforeach
