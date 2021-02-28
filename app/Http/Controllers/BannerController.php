@@ -61,9 +61,9 @@ class BannerController extends Controller
             $image_name         = Carbon::now()->format('d-m-Y H-i-s') .'.'. $OriginalExtension;
             $destinationPath    = 'images';
             $resize_image       =Image::make($image->getRealPath());
-            $resize_image->resize(500, 500, function($constraint){
-                $constraint->aspectRatio();
-            });
+//            $resize_image->resize(500, 500, function($constraint){
+//                $constraint->aspectRatio();
+//            });
             $resize_image->save($destinationPath . '/' . $image_name);
 
             $banner->image    = $image_name;
@@ -93,9 +93,9 @@ class BannerController extends Controller
      */
     public function edit(Banner $banner ,$id)
     {
-//        echo 'ami dekhte chai ei function porjonto hit ase kina !';
+     //echo 'ami dekhte chai ei function porjonto hit ase kina !';
 
-        $banner = Banner::find($id);
+        $banner = Banner::where('id',$id)->first();
         return view('backend.banner.edit' , compact('banner'));
     }
 
@@ -106,15 +106,16 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banner $banner ,$id)
+    public function update(Request $request ,$id)
     {
+
         $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
         ]);
-        $banner = Category::find($id);
-        $banner->title = $request->title;
-        $banner->description = $request->description;
+        $banner = Category::where('id',$id)->first();
+        $banner->title = $request-> title;
+        $banner->description = $request-> description;
 
 
 

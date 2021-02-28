@@ -21,7 +21,7 @@
                                 <td>#</td>
                                 <td>{{ $banner->title }}</td>
                                 <td>
-                                    <a href="{{route('admin.backend.banner.edit' , $banner->id)}}" class="btn btn-success">Edit</a>
+                                    <a href="{{route('admin.backend.banner.edit' ,$banner->id)}}" class="btn btn-success">Edit</a>
                                     <a href="#deleteModal{{$banner->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
                                     <!-- Modal -->
                                     <div class="modal fade" id="deleteModal{{$banner->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -38,7 +38,7 @@
                                                 </div>
                                                 <div class="modal-footer">
 
-                                                    <form action="{!! route('admin.backend.banners.delete',$banner->id) !!}" method="post">
+                                                    <form action="{{  route('admin.backend.banners.delete',$banner->id) }}" method="post">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger">Parmanently Delete</button>
 

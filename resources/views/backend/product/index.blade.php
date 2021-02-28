@@ -47,7 +47,6 @@
                                             <div class="modal-footer">
 
                                                 <form action="{{ route('admin.product.destroy', $product->id) }}" method="post">
-                                                    <input type="hidden" name="_method" value="DELETE">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Parmanently Delete</button>

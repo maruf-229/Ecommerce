@@ -87,9 +87,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category,$id)
+    public function edit($id)
     {
-        $category = Category::find($id);
+        $category = Category::where('id',$id)->first();
         return view('backend.category.edit')->with('category', $category);
     }
 
@@ -100,7 +100,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category , $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|max:255',
@@ -126,9 +126,9 @@ class CategoryController extends Controller
     public function delete($id)
     {
 
-        $category = Category::find($id);
+        $category = Category::where('id',$id)->first();
 
-        if(!is_null($category)){
+        if($category != null){
             $category->delete();
         }
 

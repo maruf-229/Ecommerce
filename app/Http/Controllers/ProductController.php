@@ -6,8 +6,10 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Image;
+use Validator;
 //use Intervention\Image\Image;
 
 class ProductController extends Controller
@@ -75,7 +77,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('admin.product.create');
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -94,11 +96,11 @@ class ProductController extends Controller
      *
      * @param \App\Models\Product $product
      * @param $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-
+        $product = Product::where('id',$id)->find($id);
         return view('backend.product.edit',compact('product'));
     }
 
@@ -109,16 +111,16 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required'| 'max:255',
+            'title' => 'required|max:255',
             'description' => 'required',
-            'price' => 'required', 'numeric',
-            'quantity' => 'required', 'numeric',
-
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric',
         ]);
-        $product = Product::find($id);
+
+        $product = Product::where('id',$id)->find($id);
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
@@ -136,13 +138,13 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product ,$id)
-    {
+    public function destroy($id){
+        $product = Product::where('id',$id)->first();
 
-        $product = Product::find($id);
-        if(!is_null($product)){
-            $product->delete($id);
-        }
+     if($product !=null) {
+            $product->delete();
+      }
+
         session()->flash('success','Product has deleted successfully !!');
         return back();
     }

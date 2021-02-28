@@ -10,7 +10,8 @@
                 </div>
                 <div class="card-body">
                     <form action="{{route('admin.backend.category.update',$category->id)}}" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                        @csrf
+                        @method('POST')
                         @include("backend.partials.messege")
                         <div class="mb-3">
                             <label for="title" class="form-label">Name</label>
