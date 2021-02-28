@@ -8,6 +8,7 @@ use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Image;
+//use Intervention\Image\Image;
 
 class ProductController extends Controller
 {
@@ -91,12 +92,13 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
     {
-
+        $product = Product::find($product);
         return view('backend.product.edit',compact('product'));
     }
 
@@ -107,7 +109,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request,$id)
     {
         $request->validate([
             'title' => 'required'| 'max:255',
@@ -116,7 +118,7 @@ class ProductController extends Controller
             'quantity' => 'required', 'numeric',
 
         ]);
-        $product = Product::find($product);
+        $product = Product::find($id);
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;

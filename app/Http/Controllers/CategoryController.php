@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -54,7 +56,7 @@ class CategoryController extends Controller
             $OriginalExtension  = $image->getClientOriginalExtension();
             $image_name         = Carbon::now()->format('d-m-Y H-i-s') .'.'. $OriginalExtension;
             $destinationPath    = 'images';
-            $resize_image       = \Intervention\Image\Facades\Image::make($image->getRealPath());
+            $resize_image       =Image::make($image->getRealPath());
             $resize_image->resize(500, 500, function($constraint){
                 $constraint->aspectRatio();
             });

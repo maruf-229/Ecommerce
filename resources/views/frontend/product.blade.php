@@ -14,11 +14,11 @@
                             @php $i =1; @endphp
                             @foreach($product->images as $image)
                                 @if($i>0)
-                                    <img class="img-fluid" src="{{asset('images/'.$image->image)}}" alt="" >
+                                    <img class="img-fluid" src="{{asset('images/'.$image->image)}}" alt="Image" >
                                 @endif
                                 @php $i--; @endphp
                             @endforeach
-                            <a class="btn hvr-hover" href="#">{{$product->name}}</a>
+                            <a class="btn hvr-hover" href="#">{{$product->title}}</a>
                             <p class="card-text">{{$product->description}}</p>
                         </div>
 

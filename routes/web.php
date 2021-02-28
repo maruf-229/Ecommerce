@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PagesController;
@@ -34,6 +35,12 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => ['auth']], fu
         Route::post('/delete/{id}', [CategoryController::class,'delete'])->name('backend.categories.delete');
     });
     Route::resource('product', ProductController::class);
+
+    Route::group(['prefix' => 'banner'], function () {
+        Route::get('/', [BannerController::class,'index'])->name('backend.banner');
+        Route::get('/create', [BannerController::class, 'create'])->name('backend.banner.create');
+        Route::post('/store', [BannerController::class, 'store'])->name('backend.banner.store');
+    });
 });
 
 

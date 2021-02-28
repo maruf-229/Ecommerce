@@ -8,8 +8,8 @@
                 Edit Product
             </div>
             <div class="card-body">
-                <form action="{{route('admin.product.update',$product)}}" method="post" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+                <form action="{{route('admin.product.update',$product->id)}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     @include("backend.partials.messege")
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
