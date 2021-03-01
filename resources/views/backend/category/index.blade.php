@@ -34,30 +34,29 @@
                                 <a href="{{route('admin.backend.category.edit' , $category->id)}}" class="btn btn-success">Edit</a>
                                 <a href="#deleteModal{{$category->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
                                 <!-- Modal -->
-                                <form action="{!! route('admin.backend.categories.delete',$category->id) !!}" method="post">
-                                    @csrf
-                                @if(\Illuminate\Support\Facades\Session::has($category->id))
-                                    <script>
-                                        Swal.fire({
-                                            title: 'Are you sure?',
-                                            text: "You won't be able to revert this!",
-                                            icon: 'warning',
-                                            showCancelButton: true,
-                                            confirmButtonColor: '#3085d6',
-                                            cancelButtonColor: '#dd3333',
-                                            confirmButtonText: 'Yes, delete it!'
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                Swal.fire(
-                                                    'Deleted!',
-                                                    'Your file has been deleted.',
-                                                    'success'
-                                                )
-                                            }
-                                        })
-                                    </script>
-                                @endif
-                                </form>
+                                <div class="modal fade" id="deleteModal{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Are you sure You want to delete?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-footer">
+
+                                                <form action="{!! route('admin.backend.categories.delete',$category->id) !!}" method="post">
+                                                    {{csrf_field()}}
+                                                    <button type="submit" class="btn btn-danger">Parmanently Delete</button>
+
+                                                </form>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </td>
                         </tr>
                         @endforeach
