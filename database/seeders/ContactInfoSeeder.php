@@ -17,9 +17,9 @@ class ContactInfoSeeder extends Seeder
     public function run()
     {
         DB::table('contact_infos')->insert([
-            'address' => 'fceecrcdscdcs',
+            'address' => ' 4/b, road-7, Block-c, Nobody housing, Mohammadpur Dhaka',
             'phone' => '01799631258',
-            'email' => 'user@gmail.com',
+            'email' => 'mhmaruf229@gmail.com',
         ]);
     }
 }

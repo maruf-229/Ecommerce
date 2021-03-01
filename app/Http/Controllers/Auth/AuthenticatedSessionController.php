@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\ContactInfo;
+use App\Models\Logo;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +19,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        $logos = Logo::all();
+        $contact_infos = ContactInfo::all();
+        return view('auth.login' , compact('logos' ,'contact_infos'));
     }
 
     /**
@@ -32,7 +36,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+
+
+        return redirect()->intended(RouteServiceProvider::HOME );
     }
 
     /**
@@ -49,6 +55,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+
+        return redirect('/' );
     }
 }

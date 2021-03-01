@@ -10,8 +10,4 @@
 
     @include('frontend.includes.blog')
 
-    @include('frontend.includes.insta')
-
-
-
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\ContactInfo;
+use App\Models\Logo;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -61,8 +62,8 @@ class ContactInfoController extends Controller
      */
     public function edit($id)
     {
-        $contact_info = ContactInfo::where('id',$id)->first();
-        return view('backend.contact_info.edit' , compact('contact_info'));
+        $contact_info= ContactInfo::where('id',$id)->first();
+        return view('backend.contact_info.edit',compact('contact_info'));
     }
 
     /**
@@ -74,21 +75,19 @@ class ContactInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
+        $request->validate([
+            'address' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required|email',
+        ]);
+        $contact_info = ContactInfo::where('id',$id)->first();
+        $contact_info->address = $request-> address;
+        $contact_info->phone = $request-> phone;
+        $contact_info->email = $request-> email;
 
-//        $request->validate([
-//            'address' => 'required|max:255',
-//            'phone' => 'required',
-//            'email' => 'required',
-//        ]);
-//        $contact_info = ContactInfo::find($id);
-//        $contact_info->address = $request->address;
-//        $contact_info->phone = $request->phone;
-//        $contact_info->email = $request->email;
-//
-//        $contact_info->save();
-//
-//        return redirect()->route('admin.backend.contact_info');
+        $contact_info->save();
+
+        return redirect()->route('admin.backend.contact_info');
     }
 
     /**

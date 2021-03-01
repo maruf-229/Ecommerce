@@ -36,15 +36,17 @@
                     <div class="footer-link-contact">
                         <h4>Contact Us</h4>
                         <ul>
+                            @foreach($contact_infos as $contact_info)
                             <li>
-                                <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                <p><i class="fas fa-map-marker-alt"></i>Address: {{ $contact_info->address }} </p>
                             </li>
                             <li>
-                                <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                <p><i class="fas fa-phone-square"></i>Phone: {{ $contact_info->phone }}</p>
                             </li>
                             <li>
-                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                <p><i class="fas fa-envelope"></i>Email: {{ $contact_info->email }}</p>
                             </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
