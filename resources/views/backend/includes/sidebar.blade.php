@@ -113,11 +113,27 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('admin.backend.logo') }}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Logo
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.backend.contact_info') }}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                             Contact Info
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('frontend.home') }}" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
                             View Website
-
                         </p>
                     </a>
                 </li>

@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\LogoController;
+use App\Http\Controllers\ContactInfoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +47,20 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => ['auth']], fu
         Route::post('/edit/{id}', [BannerController::class,'update'])->name('backend.banner.update');
         Route::post('/delete/{id}', [BannerController::class,'delete'])->name('backend.banners.delete');
 
+    });
+
+    Route::group(['prefix' => 'logo'], function () {
+        Route::get('/', [LogoController::class,'index'])->name('backend.logo');
+        Route::get('/edit/{id}', [LogoController::class,'edit'])->name('backend.logo.edit');
+        Route::post('/store', [LogoController::class, 'store'])->name('backend.logo.store');
+        Route::post('/edit/{id}', [LogoController::class,'update'])->name('backend.logo.update');
+    });
+
+    Route::group(['prefix' => 'contact_info'], function () {
+        Route::get('/', [ContactInfoController::class,'index'])->name('backend.contact_info');
+        Route::get('/edit/{id}', [ContactInfoController::class,'edit'])->name('backend.contact_info.edit');
+        Route::post('/store', [ContactInfoController::class, 'store'])->name('backend.contact_info.store');
+        Route::post('/edit/{id}', [ContactInfoController::class,'update'])->name('backend.contact_info.update');
     });
 });
 

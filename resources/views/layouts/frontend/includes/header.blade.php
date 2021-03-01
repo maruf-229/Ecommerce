@@ -8,7 +8,9 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-                <a class="navbar-brand" href="index.html"><img src="images/logo.png" class="logo" alt=""></a>
+                @foreach($logos as $logo)
+                <a class="navbar-brand" href="{{ route('frontend.home') }}"><img src="{{asset('images/'.$logo->image)}}" width="100px" class="logo" alt=""></a>
+                @endforeach
             </div>
             <!-- End Header Navigation -->
 
@@ -17,7 +19,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{{ route('frontend.home') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
                     <li class="dropdown megamenu-fw">
                         <a href="{{ route('frontend.category') }}" class="nav-link">Categories</a>

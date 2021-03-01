@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Banner;
-use App\Models\Category;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Image;
+use Validator;
 
 class BannerController extends Controller
 {
@@ -39,7 +41,7 @@ class BannerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -89,9 +91,9 @@ class BannerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Banner  $banner
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(Banner $banner ,$id)
+    public function edit(Banner $banner , $id)
     {
      //echo 'ami dekhte chai ei function porjonto hit ase kina !';
 
@@ -104,16 +106,17 @@ class BannerController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Banner  $banner
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function update(Request $request ,$id)
     {
 
         $request->validate([
-            'name' => 'required|max:255',
+            'title' => 'required|max:255',
             'description' => 'required',
         ]);
-        $banner = Category::where('id',$id)->first();
+        $banner = Banner::where('id',$id)->first();
         $banner->title = $request-> title;
         $banner->description = $request-> description;
 

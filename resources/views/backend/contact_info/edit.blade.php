@@ -1,35 +1,33 @@
 @extends('backend.layouts.master')
 
 @section('content')
-
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="card">
-                <div class="card-header" >
-                    <b>Add Category</b>
+                <div class="card-header">
+                    Edit Information
                 </div>
                 <div class="card-body">
-                    <form action="{{route('admin.backend.category.update',$category->id)}}" method="post" enctype="multipart/form-data">
+
+                    <form action="{{ route('admin.backend.contact_info.update',$contact_info->id ) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
-                        @include("backend.partials.messege")
                         <div class="mb-3">
-                            <label for="title" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{$category->name}}">
+                            <label for="title" class="form-label">Address</label>
+                            <input type="text" class="form-control" name="adress" id="adress" value="{{$contact_info->address}}">
 
                         </div>
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <!--<input type="password" class="form-control" id="exampleInputPassword1">-->
-                            <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{$category->description}}</textarea>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <input type="file" class="form-control" name="image" id="image"value="{{$category->image}}">
-                            </div>
+                            <label for="title" class="form-label">Phone</label>
+                            <input type="text" class="form-control" name="phone" id="phone" value="{{$contact_info->phone}}">
 
                         </div>
-                        <button type="submit" class="btn btn-primary">Add category</button>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Phone</label>
+                            <input type="email" class="form-control" name="email" id="email" value="{{$contact_info->email}}">
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Information</button>
                     </form>
                 </div>
             </div>
@@ -45,5 +43,4 @@
         </footer>
         <!-- partial -->
     </div>
-
 @endsection

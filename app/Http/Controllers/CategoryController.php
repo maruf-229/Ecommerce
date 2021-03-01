@@ -35,7 +35,7 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -106,9 +106,22 @@ class CategoryController extends Controller
             'name' => 'required|max:255',
             'description' => 'required',
         ]);
-        $category = Category::find($id);
+        $category = Category::where('id',$id)->first();
         $category->name = $request->name;
         $category->description = $request->description;
+        if($request->hasFile('image')){
+            $image              = $request->file('image');
+            $OriginalExtension  = $image->getClientOriginalExtension();
+            $image_name         = Carbon::now()->format('d-m-Y H-i-s') .'.'. $OriginalExtension;
+            $destinationPath    = 'images';
+            $resize_image       =Image::make($image->getRealPath());
+            $resize_image->resize(500, 500, function($constraint){
+                $constraint->aspectRatio();
+            });
+            $resize_image->save($destinationPath . '/' . $image_name);
+
+            $category->image    = $image_name;
+        }
 
 
 

@@ -28,7 +28,7 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
@@ -116,19 +116,13 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-<<<<<<< Updated upstream
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
         ]);
 
-        $product = Product::where('id',$id)->find($id);
-=======
-            'price' => 'required', 'numeric',
-            'quantity' => 'required', 'numeric',
 
-//        ]);
-        $product = Product::find($id);
->>>>>>> Stashed changes
+        $product = Product::where('id',$id)->first();
+
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
