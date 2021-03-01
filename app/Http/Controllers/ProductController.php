@@ -116,11 +116,19 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
+<<<<<<< Updated upstream
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
         ]);
 
         $product = Product::where('id',$id)->find($id);
+=======
+            'price' => 'required', 'numeric',
+            'quantity' => 'required', 'numeric',
+
+//        ]);
+        $product = Product::find($id);
+>>>>>>> Stashed changes
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
