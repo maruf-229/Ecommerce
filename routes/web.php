@@ -24,6 +24,9 @@ Route::get('/' , [PagesController::class,'index'])->name('frontend.home');
 Route::get('/categories', [PagesController::class ,'category'])->name('frontend.category');
 Route::get('/products', [PagesController::class,'product'])->name('frontend.category.product');
 
+Route::get('/category1', [\App\Http\Controllers\Category1Controller::class,'index'])->name('category1.index');
+Route::post('/store',[\App\Http\Controllers\Category1Controller::class,'store'])->name('category1.store');
+
 
 
 Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => ['auth']], function (){
