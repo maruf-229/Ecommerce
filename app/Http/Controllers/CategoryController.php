@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+
 use Image;
 
 class CategoryController extends Controller
@@ -65,6 +65,7 @@ class CategoryController extends Controller
             $category->image    = $image_name;
         }
         $category->save();
+        session()->flash('success','Category has deleted successfully !!');
 
 
         return redirect()->route('admin.backend.category');
@@ -115,7 +116,7 @@ class CategoryController extends Controller
             $image_name         = Carbon::now()->format('d-m-Y H-i-s') .'.'. $OriginalExtension;
             $destinationPath    = 'images';
             $resize_image       =Image::make($image->getRealPath());
-            $resize_image->resize(500, 500, function($constraint){
+            $resize_image->resize(500,500, function($constraint){
                 $constraint->aspectRatio();
             });
             $resize_image->save($destinationPath . '/' . $image_name);
@@ -145,7 +146,7 @@ class CategoryController extends Controller
             $category->delete();
         }
 
-        session()->flash('success','Product has deleted successfully !!');
+        session()->flash('success','Category has deleted successfully !!');
         return back();
     }
 

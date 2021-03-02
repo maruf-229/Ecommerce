@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <form action="{{route('admin.backend.category.store')}}" method="post" enctype="multipart/form-data" id="categoryForm">
                         {{ csrf_field() }}
-                       @include("backend.partials.messege")
+
                         <div class="mb-3">
                             <label for="title" class="form-label">Name</label>
                             <input type="text" class="form-control" name="name" id="name">
@@ -48,32 +48,6 @@
         </footer>
         <!-- partial -->
     </div>
-    <script>
-        $("#categoryForm").submit(function(e){
 
-            e.preventDefault();
-
-            let name = $("#name").val();
-            let description = $("#description").val();
-
-
-            $.ajax({
-                url:"{{route('admin.backend.category.store')}}",
-                type:"POST",
-                data:{
-                    name:name,
-                    description:description,
-                    parent_id:parent_id,
-                    _token:_token,
-                },
-                success: function(response){
-                    if(response){
-
-                        location.reload();
-                    }
-                }
-            });
-        });
-    </script>
 
 @endsection

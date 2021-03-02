@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
 
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped" >
                         <tr>
                             <th>#</th>
                             <th>Name</th>
@@ -19,6 +19,7 @@
                             <th>Image</th>
                             <th>Manage</th>
                         </tr>
+                        <tbody>
                         @foreach($categories as $category)
                         <tr>
 
@@ -60,7 +61,7 @@
                             </td>
                         </tr>
                         @endforeach
-
+                        </tbody>
                     </table>
                 </div>
             </div>

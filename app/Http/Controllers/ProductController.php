@@ -76,6 +76,7 @@ class ProductController extends Controller
                 $product_image->save();
             }
         }
+        session()->flash('success','Product added successfully !!');
 
         return redirect()->route('admin.product.index');
     }
