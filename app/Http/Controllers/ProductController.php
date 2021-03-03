@@ -89,7 +89,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        echo 'dfghjkhgfddfgh';
     }
 
     /**
@@ -151,4 +151,13 @@ class ProductController extends Controller
         session()->flash('success','Product has deleted successfully !!');
         return back();
     }
+
+   public function search(){
+        //echo 'dfghjkhgfddfgh';
+        $search_text = $_GET['query'];
+        $products = Product::where('title','LIKE','%'.$search_text .'%')->with('category')->get();
+        return view('backend.product.search',compact('products'));
+   }
+
+
 }

@@ -41,6 +41,8 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => ['auth']], fu
         Route::post('/delete/{id}', [CategoryController::class,'delete'])->name('backend.categories.delete');
     });
     Route::resource('product', ProductController::class);
+    Route::get('/search', [ProductController::class,'search'])->name('search');
+
 
     Route::group(['prefix' => 'banner'], function () {
         Route::get('/', [BannerController::class,'index'])->name('backend.banner');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContactInfo;
+use App\Models\Logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
@@ -15,7 +17,9 @@ class PasswordResetLinkController extends Controller
      */
     public function create()
     {
-        return view('auth.forgot-password');
+        $logos = Logo::all();
+        $contact_infos = ContactInfo::all();
+        return view('auth.forgot-password' , compact('logos' ,'contact_infos'));
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContactInfo;
+use App\Models\Logo;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +20,9 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request)
     {
-        return view('auth.reset-password', ['request' => $request]);
+        $logos = Logo::all();
+        $contact_infos = ContactInfo::all();
+        return view('auth.reset-password', ['request' => $request] , compact('logos' ,'contact_infos'));
     }
 
     /**

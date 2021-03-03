@@ -25,12 +25,21 @@
                 </div>
             </form>
         </li>
+
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
         <!-- Messages Dropdown Menu -->
+        <li>
+            <div class="input-group">
+                <form action="{{ route('admin.search') }}" method="get">
+                    <input type="search" id="query" name="query" class="form-control" placeholder="Search Products">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-comments"></i>

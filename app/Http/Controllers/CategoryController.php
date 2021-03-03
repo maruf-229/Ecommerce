@@ -149,5 +149,11 @@ class CategoryController extends Controller
         session()->flash('success','Category has deleted successfully !!');
         return back();
     }
+    public function search(Request $request){
+        echo 'dfghjkhgfddfgh';
+//        $search_text = $_GET['query'];
+//        $products = Product::where('title','%'.$search_text .'%')->with('category')->first();
+//        return view('backend.product.search',compact('products'));
+    }
 
 }

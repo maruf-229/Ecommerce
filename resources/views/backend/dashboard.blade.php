@@ -31,8 +31,8 @@
                     <div class="small-box bg-info">
 
                         <div class="inner">
-                            @foreach($categories as $category)
-                            <h3>{{ $category->products->count() }}</h3>
+                            @foreach($products as $product)
+                            <h3>{{ $product->count() }}</h3>
                             @endforeach
                             <p>Number of Products</p>
                         </div>
