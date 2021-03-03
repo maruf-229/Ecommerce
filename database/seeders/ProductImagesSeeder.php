@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProductImagesSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class ProductImagesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('product_images')->insert([
+            'image'=> 'shirt-img.jpg',
+            'product_id' =>'1',
+        ]);
     }
 }

@@ -33,12 +33,12 @@
         <!-- Navbar Search -->
         <!-- Messages Dropdown Menu -->
         <li>
-            <div class="input-group">
-                <form action="{{ route('admin.search') }}" method="get">
+            <form action="{{ route('admin.search') }}" method="get">
+                <div class="input-group">
                     <input type="search" id="query" name="query" class="form-control" placeholder="Search Products">
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
+                </div>
+            </form>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
