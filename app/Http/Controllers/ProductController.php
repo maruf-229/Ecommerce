@@ -85,11 +85,12 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        echo 'dfghjkhgfddfgh';
+        $product = Product::where('id',$id)->first();
+        return view('backend.product.show',compact('product'));
     }
 
     /**
@@ -153,11 +154,19 @@ class ProductController extends Controller
     }
 
    public function search(){
-        //echo 'dfghjkhgfddfgh';
+
         $search_text = $_GET['query'];
-        $products = Product::where('title','LIKE','%'.$search_text .'%')->with('category')->get();
+        $products = Product::where('title','LIKE','%'.$search_text .'%')
+            ->with('category')
+            ->get();
         return view('backend.product.search',compact('products'));
    }
-
+   public function autoComplete(Request $request){
+       $search_text = $_GET['query'];
+       $products = Product::where('title','LIKE','%'.$search_text .'%')
+           ->with('category')
+           ->get();
+       return response()->json($products);
+   }
 
 }

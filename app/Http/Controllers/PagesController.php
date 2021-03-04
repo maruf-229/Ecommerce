@@ -19,20 +19,28 @@ class PagesController extends Controller
     }
 
     public function category(){
-
         $categories=Category::orderBy('id','desc')->get();
         $banners = Banner::all();
         $logos = Logo::all();
         $contact_infos = ContactInfo::all();
         return view('frontend.category', compact('banners','logos' ,'contact_infos'))->with('categories',$categories);
     }
-    public function product(){
-
-        $products=Product::orderBy('id','desc')->get();
+    public function product($id){
+          //dd($id);
+        $category = Category::find($id);
+        $products=$category->products;
         $banners = Banner::all();
         $logos = Logo::all();
         $contact_infos = ContactInfo::all();
         return view('frontend.product',compact('banners','logos','contact_infos'))->with('products',$products);
+    }
+    public function productShow($id)
+    {
+        $product=Product::find($id);
+        $banners = Banner::all();
+        $logos = Logo::all();
+        $contact_infos = ContactInfo::all();
+        return view('frontend.show',compact('product','banners','logos','contact_infos'));
     }
 
 

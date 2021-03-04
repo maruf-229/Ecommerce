@@ -30,6 +30,7 @@
 
 
                                 <a href="{{ route('admin.product.edit', $product->id ) }}" class="btn btn-success">Edit</a>
+                                <a href="{{ route('admin.product.show', $product->id ) }}" class="btn btn-primary">Show</a>
                                 <a href="#deleteModal{{ $product->id }}" data-toggle="modal" class="btn btn-danger">Delete</a>
                                 <!-- Modal -->
                                <div class="modal fade" id="deleteModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
