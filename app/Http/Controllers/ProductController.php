@@ -162,11 +162,12 @@ class ProductController extends Controller
         return view('backend.product.search',compact('products'));
    }
    public function autoComplete(Request $request){
-       $search_text = $_GET['query'];
-       $products = Product::where('title','LIKE','%'.$search_text .'%')
-           ->with('category')
-           ->get();
-       return response()->json($products);
+        echo ($request);
+//       $search_text = $_GET['query'];
+//       $products = Product::where('title','LIKE','%'.$search_text .'%')
+//           ->with('category')
+//           ->get();
+//       return response()->json($products);
    }
 
 }
