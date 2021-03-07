@@ -141,39 +141,15 @@
     </ul>
 </nav>
 
-<script type="text/javascript">
-    $(".remove").click(function(){
-        var id = $(this).parents("tr").attr("id");
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
 
-        swal({
-                title: "Are you sure?",
-                //text: "You will not be able to recover this imaginary file!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "No, cancel plx!",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm) {
-                if (isConfirm) {
-                    $.ajax({
-                        url: '/item-list/'+id,
-                        type: 'DELETE',
-                        error: function() {
-                            alert('Something is wrong');
-                        },
-                        success: function(data) {
-                            $("#"+id).remove();
-                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                        }
-                    });
-                } else {
-                    swal("Cancelled", "Your imaginary file is safe :)", "error");
-                }
+<script>
+    let path ={{ route('admin.autoComplete') }};
+    $(`input.typeahed`).typeahed({
+        source:function (terms,process){
+            return $.get(path,{terms:terms},function (query){
+                return process(query);
             });
-
-    });
-
+        }
+    })
 </script>
