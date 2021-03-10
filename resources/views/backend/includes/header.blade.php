@@ -15,7 +15,7 @@
                 @csrf
 
                 <div class="submit-button text-center">
-                    <button class="btn hvr-hover text-danger" id="submit" type="submit" onclick="return logout(event);">
+                       <button class="btn hvr-hover text-danger" id="submit" type="submit" onclick="return logout(event);">
                            <span class="text-danger">
                                <i class="fa fa-fw fa-sign-out"></i>Logout
                            </span>
