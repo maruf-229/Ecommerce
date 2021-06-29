@@ -62,8 +62,6 @@ class CategoryController extends Controller
         }
         $category->save();
         session()->flash('success','Category has deleted successfully !!');
-
-
         return redirect()->route('admin.backend.category');
     }
 
