@@ -49,7 +49,7 @@
                         </form>
                         <form id="" method="GET">
                             <div style="text-align: center">
-                                <a class="nav-link" href="{{ route('password.request') }}"">
+                                <a class="nav-link" href="{{ route('password.request') }}">
                                 Forget Password?
                                 </a>
                             </div>
